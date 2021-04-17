@@ -9,7 +9,7 @@ Usually in kubernetes we can use replication but in this case (docker compose) w
 How to Scale :
 1. Duplicate wordpress instance in docker-compose file
    for example, you can add new instance 
----------------------------------------------------
+```
    wordpress3:
     image: wordpress
     restart: always
@@ -25,11 +25,10 @@ How to Scale :
           memory: 512M
     volumes:
       - wordpress:/var/www/html
----------------------------------------------------
+```
 
 2. And then add nginx configuration
-
----------------------------------------------------
+```
 upstream app_servers {
 
         server wordpress1:80;
@@ -37,7 +36,7 @@ upstream app_servers {
         server wordpress3:80;
 
     }
----------------------------------------------------
+```
 
 3. After that you need to build/rebuild the image with command "docker-compose build"
 
